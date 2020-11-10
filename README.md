@@ -1,0 +1,1 @@
+This is a Weather Dashboard application which runs entirely on client-side Java-Script. The application utilises the OpenWeather API
