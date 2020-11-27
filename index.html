@@ -40,35 +40,47 @@
     </div>
 
     <div class="container" id="time-place">
-        <p class="lead">Location</p>
-        <p>Date</p>
+        <p class="lead" id="location-searched">Location</p>
+        <p id="date-display">Date</p>
     </div>
 
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="col col-lg-2">
-                ICON
+            <div class="col col-lg-6 display-icons text-center">
+                <div>
+                    <p id="weather-description"></p>
+                </div>
+                <img id="current-weather-icon">
             </div>
-            <div class="col col-lg-2">
+            <div class="col col-lg-6 display-icons text-center" id="uv-index">
                 UV Rating
             </div>
+
         </div>
+
+    </div>
+    <div class="container">
         <div class="row justify-content-md-center">
-            <div class=" col col-lg-2">
+            <div class=" col col-lg-4 display-icons text-center" id="current-temp">
                 TEMP
             </div>
-            <div class="col col-lg-2">
+            <div class="col col-lg-4 display-icons text-center" id="current-humidity">
                 HUMIDITY
             </div>
-            <div class="col col-lg-2">
+            <div class="col col-lg-4 display-icons text-center" id="current-wind-speed">
                 WIND SPEED
             </div>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="geocode.js"></script>
     <script src="index.js"></script>
 </body>
+
+<footer>
+
+</footer>
 
 </html>
