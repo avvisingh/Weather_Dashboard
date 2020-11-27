@@ -1,11 +1,3 @@
-document.addEventListener('load', () => {
-    let searchHistory = localStorage.getItem('searchHistory');
-    console.log('Document Loaded' + searchHistory);
-    if (searchHistory) {
-        geocode(searchHistory);
-    }
-});
-
 const submitBttn = document.getElementById('location-search-button');
 const locationInput = document.getElementById('search-location');
 const locationDisplay = document.getElementById('location-searched');
@@ -17,12 +9,21 @@ const weatherIconDisplay = document.getElementById('current-weather-icon');
 const weatherIconBackground = document.getElementById('img-background');
 const weatherDescription = document.getElementById('weather-description');
 const UVIDisplay = document.getElementById('uv-index');
+var searchHistory = [];
+let latestSearch = JSON.parse(localStorage.getItem('searchHistory'));
+
+if (searchHistory != []) {
+    geocode(latestSearch[0]);
+}
 
 submitBttn.addEventListener('click', (e) => {
     e.preventDefault();
 
     geocode(locationInput);
 
-    localStorage.setItem('searchHistory', JSON.stringify(locationInput.value));
+    searchHistory.unshift(locationInput.value);
+    console.log(searchHistory);
+
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
     console.log(localStorage.getItem('searchHistory'));
 })

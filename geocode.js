@@ -1,5 +1,5 @@
 const geocode = (address) => {
-    address = encodeURIComponent(locationInput.value);
+    address = encodeURIComponent(locationInput.value) || latestSearch[0];
 
 
     const query1URL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(address) + '.json?access_token=pk.eyJ1IjoiYXZ2aXNpbmdoIiwiYSI6ImNrZ2l4YjFnMzBhd3kzMnBpNnJxd25uMXgifQ.UyfTNowjHn_ZL1OuGedYug&limit=1';
