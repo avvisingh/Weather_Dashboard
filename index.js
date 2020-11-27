@@ -1,3 +1,11 @@
+document.addEventListener('load', () => {
+    let searchHistory = localStorage.getItem('searchHistory');
+    console.log('Document Loaded' + searchHistory);
+    if (searchHistory) {
+        geocode(searchHistory);
+    }
+});
+
 const submitBttn = document.getElementById('location-search-button');
 const locationInput = document.getElementById('search-location');
 const locationDisplay = document.getElementById('location-searched');
@@ -6,6 +14,7 @@ const currentTempDisplay = document.getElementById('current-temp');
 const currentHumidityDisplay = document.getElementById('current-humidity');
 const currentWindSpeedDisplay = document.getElementById('current-wind-speed');
 const weatherIconDisplay = document.getElementById('current-weather-icon');
+const weatherIconBackground = document.getElementById('img-background');
 const weatherDescription = document.getElementById('weather-description');
 const UVIDisplay = document.getElementById('uv-index');
 
@@ -14,5 +23,6 @@ submitBttn.addEventListener('click', (e) => {
 
     geocode(locationInput);
 
-    // localStorage.setItem()
+    localStorage.setItem('searchHistory', JSON.stringify(locationInput.value));
+    console.log(localStorage.getItem('searchHistory'));
 })

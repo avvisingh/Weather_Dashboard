@@ -55,14 +55,23 @@ const geocode = (address) => {
                             weatherDescription.textContent = `The current Weather Description is: "${weatherDescriptionType}"`;
 
                             if (UVRating <= 2) {
-                                UVIDisplay.textContent = `The Midday UV Index today is ${UVRating}, which is rated as "Favourable"`;
-                                UVIDisplay.setAttribute('style', 'background-color:#40e02b;color:white');
+                                let UVDisplayHTML = `The Midday UV Index today is ${UVRating}, which is rated as "Favourable" <div id="UV-Colour"></div>`;
+                                UVIDisplay.innerHTML = UVDisplayHTML;
+                                let UVColourDisplay = document.getElementById('UV-Colour');
+                                UVColourDisplay.setAttribute('style', 'background-color:#40e02b');
+                                weatherIconBackground.setAttribute('style', 'background-color:#f0e181');
                             } else if (UVRating > 2 && UVRating <= 5) {
-                                UVIDisplay.textContent = `The Midday UV Index today is ${UVRating}, which is rated as "Moderate". It is not recommended to spend time under the Sun unprotected.`;
-                                UVIDisplay.setAttribute('style', 'background-color:#ebe70e;color:white');
+                                let UVDisplayHTML = `The Midday UV Index today is ${UVRating}, which is rated as "Moderate". It is not recommended to spend time under the Sun unprotected. <div id="UV-Colour"></div>`;
+                                UVIDisplay.innerHTML = UVDisplayHTML;
+                                let UVColourDisplay = document.getElementById('UV-Colour');
+                                UVColourDisplay.setAttribute('style', 'background-color:#ebe70e');
+                                weatherIconBackground.setAttribute('style', 'background-color:#f0e181');
                             } else {
-                                UVIDisplay.textContent = `The Midday UV Index today is ${UVRating}, which is rated as "Severe". It is not recommended to spend time under the Sun unprotected.`;
-                                UVIDisplay.setAttribute('style', 'background-color:#e31809;color:white');
+                                let UVDisplayHTML = `The Midday UV Index today is ${UVRating}, which is rated as "Severe". It is not recommended to spend time under the Sun unprotected. <div id="UV-Colour"></div>`;
+                                UVIDisplay.innerHTML = UVDisplayHTML;
+                                let UVColourDisplay = document.getElementById('UV-Colour');
+                                UVColourDisplay.setAttribute('style', 'background-color:#e31809');
+                                weatherIconBackground.setAttribute('style', 'background-color:#f0e181');
                             }
                         }
                     })

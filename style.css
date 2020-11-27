@@ -1,4 +1,53 @@
+body {
+    background-color: #f0e181;
+}
+
 .display-icons {
-    border: black solid 1px;
+    border: #989a9c solid 1px;
+    border-radius: 2.5%;
     margin-top: 2%;
+    background-color: #ecf0f1;
+}
+
+.bottom-row {
+    min-height: 4em;
+}
+
+#UV-Colour {
+    height: 5%;
+    width: 80%;
+    margin: 2% auto;
+}
+
+#img-background {
+    width: 50%;
+    padding: 0;
+    margin: 0.2em auto;
+}
+
+#github-link {
+    color: whitesmoke;
+    text-decoration: underline;
+}
+
+footer {
+    margin-top: 2%;
+    background-color: #18BC9C;
+    color: white;
+    margin-bottom: 0%;
+}
+
+#footer-h4 {
+    text-align: center;
+    width: 100%;
+    background-color: #18BC9C;
+    color: white;
+}
+
+#footer-text {
+    text-align: center;
+    width: 100%;
+    margin-top: 0.5%;
+    background-color: #18BC9C;
+    color: white;
 }

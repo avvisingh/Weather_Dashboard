@@ -12,7 +12,7 @@
 
 <header>
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Note Taker
+        <a class="navbar-brand" href="/">Weather-Dashboard
         </a>
     </nav>
 </header>
@@ -50,10 +50,13 @@
                 <div>
                     <p id="weather-description"></p>
                 </div>
-                <img id="current-weather-icon">
+                <div id="img-background">
+                    <img id="current-weather-icon">
+                </div>
             </div>
             <div class="col col-lg-6 display-icons text-center" id="uv-index">
                 UV Rating
+                <div id="UV-colour"></div>
             </div>
 
         </div>
@@ -61,13 +64,13 @@
     </div>
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class=" col col-lg-4 display-icons text-center" id="current-temp">
+            <div class=" col col-lg-4 display-icons text-center bottom-row" id="current-temp">
                 TEMP
             </div>
-            <div class="col col-lg-4 display-icons text-center" id="current-humidity">
+            <div class="col col-lg-4 display-icons text-center bottom-row" id="current-humidity">
                 HUMIDITY
             </div>
-            <div class="col col-lg-4 display-icons text-center" id="current-wind-speed">
+            <div class="col col-lg-4 display-icons text-center bottom-row" id="current-wind-speed">
                 WIND SPEED
             </div>
         </div>
@@ -80,7 +83,10 @@
 </body>
 
 <footer>
-
+    <h4 id="footer-h4">Thank you for visiting this webpage!</h4>
+    <p id="footer-text">This app was designed by Avvi Singh. Please do pay my <a href="https://github.com/avvisingh"
+            id="github-link">github account</a> a
+        visit to check out my other projects.</p>
 </footer>
 
 </html>
