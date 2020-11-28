@@ -28,9 +28,8 @@ const geocode = (address) => {
                         success: (res) => {
                             console.dir(res);
 
+                            // Code for current-day weather display
                             const unixTimeStamp = res.current.dt;
-                            const milliseconds = unixTimeStamp * 1000;
-                            const dateObject = new Date(milliseconds);
                             const currentTemp = res.current.temp;
                             const currentHumidity = res.current.humidity;
                             const currentWindSpeed = res.current.wind_speed;
@@ -40,11 +39,7 @@ const geocode = (address) => {
                             const UVRating = res.current.uvi;
                             console.log(typeof UVRating);
 
-                            const weekday = dateObject.toLocaleString('en-US', { weekday: 'long' });
-                            const day = dateObject.toLocaleString('en-US', { day: 'numeric' });
-                            const month = dateObject.toLocaleString('en-US', { month: 'long' });
-                            const year = dateObject.toLocaleString('en-US', { year: 'numeric' });
-                            const dateOfSearch = `Date: ${weekday}, ${day}-${month}-${year}`;
+                            const dateOfSearch = convertToDate(unixTimeStamp);
 
                             dateDisplay.textContent = dateOfSearch;
                             locationDisplay.textContent = locationSearched;
@@ -73,6 +68,31 @@ const geocode = (address) => {
                                 UVColourDisplay.setAttribute('style', 'background-color:#e31809');
                                 weatherIconBackground.setAttribute('style', 'background-color:#f0e181');
                             }
+
+                            let nextFiveDaysWeather = (i) => {
+                                let futureDate = convertToDate(res.daily[i].dt);
+                                let futureIcon = res.daily[i].weather[0].icon;
+                                let futureIconSrc = `http://openweathermap.org/img/wn/${futureIcon}@2x.png`;
+                                let futureTempDescription = res.daily[i].weather[0].description;
+                                let futureTemp = res.daily[i].temp.day;
+                                let futureHumidity = res.daily[i].humidity;
+
+                                let futureForecastDate = document.getElementById(`date-next-5-${i}`);
+                                let futureForecastTempDescription = document.getElementById(`temp-description-next-5-${i}`);
+                                let futureIconImg = document.getElementById(`icon-next-5-${i}`);
+                                let futureTempDisplay = document.getElementById(`temp-next-5-${i}`);
+                                let futureHumidityDisplay = document.getElementById(`humidity-next-5-${i}`);
+
+                                futureForecastDate.textContent = futureDate;
+                                futureForecastTempDescription.textContent = `Forecasted Weather Conditions are ${futureTempDescription}`;
+                                futureIconImg.setAttribute('src', futureIconSrc);
+                                futureTempDisplay.textContent = `Forecasted Temperature: ${futureTemp} Degrees`;
+                                futureHumidityDisplay.textContent = `Forecasted Humidity: ${futureHumidity}%`
+                            }
+
+                            // Code for Next 5 days' weather
+                            nextFiveDaysWeather(1);
+
                         }
                     })
                 } catch (err) {

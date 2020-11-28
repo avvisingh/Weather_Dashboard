@@ -25,6 +25,12 @@ body {
     margin: 0.2em auto;
 }
 
+.future-img-background {
+    width: 50%;
+    padding: 0;
+    margin: 0.2em auto;
+}
+
 #github-link {
     color: whitesmoke;
     text-decoration: underline;
