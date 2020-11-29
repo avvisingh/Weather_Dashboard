@@ -28,9 +28,13 @@ const geocode = (address) => {
                         success: (res) => {
                             console.dir(res);
 
+                            contentHolder1.setAttribute('style', 'display:block');
+                            contentHolder2.setAttribute('style', 'display:block');
+                            contentHolder3.setAttribute('style', 'display:block');
+
                             // Code for current-day weather display
                             const unixTimeStamp = res.current.dt;
-                            const currentTemp = res.current.temp;
+                            const currentTemp = parseInt(res.current.temp);
                             const currentHumidity = res.current.humidity;
                             const currentWindSpeed = res.current.wind_speed;
                             const weatherIcon = res.current.weather[0].icon;
@@ -69,29 +73,33 @@ const geocode = (address) => {
                                 weatherIconBackground.setAttribute('style', 'background-color:#f0e181');
                             }
 
+                            // Code for Next 5 days' weather
                             let nextFiveDaysWeather = (i) => {
                                 let futureDate = convertToDate(res.daily[i].dt);
                                 let futureIcon = res.daily[i].weather[0].icon;
                                 let futureIconSrc = `http://openweathermap.org/img/wn/${futureIcon}@2x.png`;
                                 let futureTempDescription = res.daily[i].weather[0].description;
-                                let futureTemp = res.daily[i].temp.day;
+                                let futureTemp = parseInt(res.daily[i].temp.day);
                                 let futureHumidity = res.daily[i].humidity;
 
                                 let futureForecastDate = document.getElementById(`date-next-5-${i}`);
                                 let futureForecastTempDescription = document.getElementById(`temp-description-next-5-${i}`);
                                 let futureIconImg = document.getElementById(`icon-next-5-${i}`);
+                                let futureIconImgBackground = document.getElementById(`icon-next-5-${i}-background`)
                                 let futureTempDisplay = document.getElementById(`temp-next-5-${i}`);
                                 let futureHumidityDisplay = document.getElementById(`humidity-next-5-${i}`);
 
                                 futureForecastDate.textContent = futureDate;
                                 futureForecastTempDescription.textContent = `Forecasted Weather Conditions are ${futureTempDescription}`;
                                 futureIconImg.setAttribute('src', futureIconSrc);
+                                futureIconImgBackground.setAttribute('style', 'background-color:#f0e181');
                                 futureTempDisplay.textContent = `Forecasted Temperature: ${futureTemp} Degrees`;
                                 futureHumidityDisplay.textContent = `Forecasted Humidity: ${futureHumidity}%`
                             }
 
-                            // Code for Next 5 days' weather
-                            nextFiveDaysWeather(1);
+                            for (i = 1; i <= 5; i++) {
+                                nextFiveDaysWeather(i);
+                            }
 
                         }
                     })

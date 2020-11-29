@@ -10,11 +10,18 @@ const weatherIconBackground = document.getElementById('img-background');
 const weatherDescription = document.getElementById('weather-description');
 const UVIDisplay = document.getElementById('uv-index');
 const NextFiveOne = document.getElementById('next-five-one');
+const contentHolder1 = document.querySelector('.content-holder-1');
+const contentHolder2 = document.querySelector('.content-holder-2');
+const contentHolder3 = document.querySelector('.content-holder-3');
 var searchHistory = [];
 let latestSearch = JSON.parse(localStorage.getItem('searchHistory'));
 
-if (searchHistory != []) {
+if (localStorage.getItem('searchHistory')) {
     geocode(latestSearch[0]);
+} else {
+    contentHolder1.setAttribute('style', 'display:none');
+    contentHolder2.setAttribute('style', 'display:none');
+    contentHolder3.setAttribute('style', 'display:none');
 }
 
 let convertToDate = (unixTimeStamp) => {
@@ -26,41 +33,6 @@ let convertToDate = (unixTimeStamp) => {
     let year = dateObject.toLocaleString('en-US', { year: 'numeric' });
     return `Date: ${weekday}, ${day}-${month}-${year}`;
 }
-
-// let nextFiveDaysWeather = (i) => {
-//     let futureDate = convertToDate(res.daily[i].dt);
-//     let futureIcon = res.daily[i].weather[0].icon;
-//     let futureIconSrc = `http://openweathermap.org/img/wn/${futureIcon}@2x.png`;
-//     let futureTempDescription = res.daily[i].weather[0].description;
-//     let futureTemp = res.daily[i].temp.day;
-//     let futureHumidity = res.daily[i].humidity;
-
-//     return
-//     `
-//         <div class="col col-lg-3 display-icons text-center">
-//         ${futureDate}
-//         </div>
-
-//         <div class="col col-lg-3 display-icons text-center">
-//             <div>
-//                 <p class="future-weather-description">
-//                     The forecasted weather description is ${futureTempDescription}
-//                 </p>
-//             </div>
-//             <div class="future-img-background">
-//                 <img src="${futureIconSrc}">
-//             </div>
-//         </div>
-
-//         <div class="col col-lg-3 display-icons text-center">
-//             <p>Forecasted day-time temperature: ${futureTemp}</p>
-//         </div>
-
-//         <div class="class="col col-lg-3 display-icons text-center">
-//             <p>Forecasted Humidity: ${futureHumidity}</p>
-//         </div>
-//     `;
-// }
 
 submitBttn.addEventListener('click', (e) => {
     e.preventDefault();
