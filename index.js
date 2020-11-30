@@ -32,7 +32,7 @@ if (localStorage.getItem('searchHistory')) {
     console.log(`This is from within the 'if' statement which checks to see if localStorage is empty: ${searchHistory}`);
     geocode(latestSearch[0]);
     searchHistory.forEach((el) => {
-        let newpara = document.createElement('P');
+        let newpara = document.createElement('A');
         newpara.innerHTML = el;
         dropdownContent.appendChild(newpara);
     });
@@ -51,4 +51,9 @@ submitBttn.addEventListener('click', (e) => {
 
     searchHistory.unshift(locationInput.value);
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+    searchHistory.forEach((el) => {
+        let newpara = document.createElement('A');
+        newpara.innerHTML = el;
+        dropdownContent.appendChild(newpara);
+    });
 })

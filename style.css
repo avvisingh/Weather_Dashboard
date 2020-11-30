@@ -2,21 +2,31 @@ body {
     background-color: #f0e181;
 }
 
-.dropdown p {
+/* Navbar container */
+.navbar {
+    overflow: hidden;
+    background-color: #18BC9C;
+    font-family: Arial;
+}
+  
+  /* Links inside the navbar */
+.navbar h6 {
     float: left;
     font-size: 16px;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-  }
-
-  .dropdown {
+}
+  
+  /* The dropdown container */
+.dropdown {
     float: left;
     overflow: hidden;
-  }
-
-  .dropdown .dropbtn {
+}
+  
+  /* Dropdown button */
+.dropdown .dropbtn {
     font-size: 16px;
     border: none;
     outline: none;
@@ -25,23 +35,25 @@ body {
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
-  }
-
-.dropdown:hover .dropbtn {
-    background-color:#f0e181;
-    color:#18BC9C;
 }
-
-.dropdown-content {
+  
+  /* Add a red background color to navbar links on hover */
+.dropdown:hover .dropbtn {
+    background-color: #f0e181;
+}
+  
+  /* Dropdown content (hidden by default) */
+#dropdown-content {
     display: none;
-    position: absolute;
+    /* position: sticky; */
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 10;
 }
-
-.dropdown-content p {
+  
+  /* Links inside the dropdown */
+#dropdown-content a {
     float: none;
     color: black;
     padding: 12px 16px;
@@ -49,13 +61,15 @@ body {
     display: block;
     text-align: left;
 }
-
-.dropdown-content a:hover {
+  
+  /* Add a grey background color to dropdown links on hover */
+#dropdown-content a:hover {
     background-color: #ddd;
 }
-
-.dropdown:hover .dropdown-content {
-    display: block;
+  
+  /* Show the dropdown menu on hover */
+.dropdown:hover #dropdown-content {
+    display: inline;
 }
 
 .display-icons {
