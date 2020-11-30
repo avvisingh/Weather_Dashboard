@@ -9,15 +9,9 @@ const geocode = (address) => {
             url: query1URL,
             method: "GET",
             success: ({ features }) => {
-                console.dir(features);
-
                 var locationSearched = features[0].place_name;
                 var lat = encodeURIComponent(features[0].center[1]);
                 var long = encodeURIComponent(features[0].center[0]);
-
-                console.log(locationSearched);
-                console.log(lat);
-                console.log(long);
 
                 const query2URL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=metric&appid=821c074a78abf4fa2fadf03d18db1e79`;
 
@@ -26,7 +20,6 @@ const geocode = (address) => {
                         url: query2URL,
                         method: "GET",
                         success: (res) => {
-                            console.dir(res);
 
                             contentHolder1.setAttribute('style', 'display:block');
                             contentHolder2.setAttribute('style', 'display:block');
@@ -41,7 +34,6 @@ const geocode = (address) => {
                             const weatherIconSrc = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
                             const weatherDescriptionType = res.current.weather[0].description;
                             const UVRating = res.current.uvi;
-                            console.log(typeof UVRating);
 
                             const dateOfSearch = convertToDate(unixTimeStamp);
 

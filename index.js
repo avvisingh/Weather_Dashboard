@@ -13,16 +13,8 @@ const NextFiveOne = document.getElementById('next-five-one');
 const contentHolder1 = document.querySelector('.content-holder-1');
 const contentHolder2 = document.querySelector('.content-holder-2');
 const contentHolder3 = document.querySelector('.content-holder-3');
-var searchHistory = [];
+const dropdownContent = document.getElementById('dropdown-content');
 let latestSearch = JSON.parse(localStorage.getItem('searchHistory'));
-
-if (localStorage.getItem('searchHistory')) {
-    geocode(latestSearch[0]);
-} else {
-    contentHolder1.setAttribute('style', 'display:none');
-    contentHolder2.setAttribute('style', 'display:none');
-    contentHolder3.setAttribute('style', 'display:none');
-}
 
 let convertToDate = (unixTimeStamp) => {
     let milliseconds = unixTimeStamp * 1000;
@@ -34,14 +26,29 @@ let convertToDate = (unixTimeStamp) => {
     return `Date: ${weekday}, ${day}-${month}-${year}`;
 }
 
+if (localStorage.getItem('searchHistory')) {
+    searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+    console.log(`This is what init searchHistory looks like: ${searchHistory}`);
+    console.log(`This is from within the 'if' statement which checks to see if localStorage is empty: ${searchHistory}`);
+    geocode(latestSearch[0]);
+    searchHistory.forEach((el) => {
+        let newpara = document.createElement('P');
+        newpara.innerHTML = el;
+        dropdownContent.appendChild(newpara);
+    });
+} else {
+    searchHistory = [];
+    console.log(`This is what init searchHistory looks like: ${searchHistory}`);
+    contentHolder1.setAttribute('style', 'display:none');
+    contentHolder2.setAttribute('style', 'display:none');
+    contentHolder3.setAttribute('style', 'display:none');
+}
+
 submitBttn.addEventListener('click', (e) => {
     e.preventDefault();
 
     geocode(locationInput);
 
     searchHistory.unshift(locationInput.value);
-    console.log(searchHistory);
-
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-    console.log(localStorage.getItem('searchHistory'));
 })
