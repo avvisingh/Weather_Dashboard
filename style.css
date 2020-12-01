@@ -107,11 +107,13 @@ body {
 }
 
 footer {
-    margin-top: 2%;
     background-color: #18BC9C;
     color: white;
-    margin-bottom: 0%;
     position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
 
 #footer-h4 {
