@@ -14,6 +14,7 @@ const contentHolder1 = document.querySelector('.content-holder-1');
 const contentHolder2 = document.querySelector('.content-holder-2');
 const contentHolder3 = document.querySelector('.content-holder-3');
 const dropdownContent = document.getElementById('dropdown-content');
+const dropdownSearchHistory = document.getElementsByClassName('dropdown-searchHistory');
 let latestSearch = JSON.parse(localStorage.getItem('searchHistory'));
 
 let convertToDate = (unixTimeStamp) => {
@@ -33,8 +34,12 @@ if (localStorage.getItem('searchHistory')) {
     geocode(latestSearch[0]);
     searchHistory.forEach((el) => {
         let newpara = document.createElement('A');
+        newpara.setAttribute('class', 'dropdown-searchHistory');
         newpara.innerHTML = el;
         dropdownContent.appendChild(newpara);
+        newpara.addEventListener('click', (e) => {
+            geocode(el);
+        })
     });
 } else {
     searchHistory = [];
@@ -47,13 +52,26 @@ if (localStorage.getItem('searchHistory')) {
 submitBttn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    geocode(locationInput);
+    geocode(locationInput.value);
 
     searchHistory.unshift(locationInput.value);
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+
+    dropdownContent.innerHTML = '';
     searchHistory.forEach((el) => {
         let newpara = document.createElement('A');
+        newpara.setAttribute('class', 'dropdown-searchHistory');
         newpara.innerHTML = el;
         dropdownContent.appendChild(newpara);
+        newpara.addEventListener('click', (e) => {
+            geocode(el);
+        })
     });
 })
+
+console.log(dropdownSearchHistory);
+
+
+
+
+

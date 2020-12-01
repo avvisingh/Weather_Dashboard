@@ -111,6 +111,7 @@ footer {
     background-color: #18BC9C;
     color: white;
     margin-bottom: 0%;
+    position: sticky;
 }
 
 #footer-h4 {
